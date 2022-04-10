@@ -60,10 +60,10 @@ class DFS {
     	dfs.insertEdge(0, 3);
     	dfs.insertEdge(3, 5);
     	dfs.insertEdge(3, 7);
-		dfs.insertEdge(5, 6);
-		dfs.insertEdge(6, 2);
-		dfs.insertEdge(2, 1);
-		dfs.insertEdge(7, 4);
+	dfs.insertEdge(5, 6);
+	dfs.insertEdge(6, 2);
+	dfs.insertEdge(2, 1);
+	dfs.insertEdge(7, 4);
 		
         System.out.println(
             "Depth First Traversal "
