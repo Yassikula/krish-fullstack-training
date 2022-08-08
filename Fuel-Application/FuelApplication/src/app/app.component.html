@@ -1,0 +1,171 @@
+<div class="container">
+  <div  style="text-align: center;">
+    <h1>Fuel Request Form</h1>
+  </div>
+
+  <div class="card mt-5" style="padding: 20px;">
+    <form #registerForm="ngForm" (ngSubmit) = "submitted(registerForm)">
+      <div class="form-group">
+        <label >Order ID :</label>
+        <input type="text" #orderId (ngModel)="orderId" name="orderId" id="orderId" class="form-control" >
+      </div><br>
+      <div class="form-group">
+        <label >Station ID :</label>
+        <input type="text" #stationId (ngModel)="stationId" name="stationId" id="stationId" class="form-control" >
+      </div><br>
+      <div class="form-group">
+        <label >Station Name :</label>
+        <input type="text" #stationName (ngModel)="stationName" name="stationName" id="stationName" class="form-control" >
+      </div><br>
+      <div class="form-group">
+        <label >Station Location :</label>
+        <input type="text" #location (ngModel)="location" name="location" id="location" class="form-control">
+      </div><br>
+      <div class="form-group">
+        <label >Fuel Type :</label>
+        <!-- <input type="text" #fuelType (ngModel)="fuelType" name="fuelType" id="fuelType" class="form-control" > -->
+        <select  #fuelType id="fuelType" name="fuelType"  (ngModel)="fuelType" class="form-control">
+          <option >Octane 92</option>
+          <option >Octane 95</option>
+          <option >Diesel</option>
+          <option >Super Diesel</option>
+        </select>
+      </div><br>
+      <div class="form-group">
+        <label >Amount of fuel :</label>
+        <input type="text" #amount (ngModel)="amount" name="amount" id="amount" class="form-control">
+      </div><br>
+     
+        <div class="form-group">
+          <label >Status :</label>
+          <input  type="text" #status (ngModel)="status" name="status" id="status" value="Pending" class="form-control" >
+        </div><br>
+        <div class="form-group">
+        <input type="submit" value="Register" class="btn btn-primary w-100">
+      </div>
+    </form>
+  </div>
+
+
+  
+    <div class="mt-5">
+      <table class="table table-bordered">
+        <thead class="thread">
+          <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Station Id</th>
+            <th scope="col">Location</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Fuel Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let order of orderDetails">
+            <td>{{order.orderId}}</td>
+            <td>{{order.stationName}}</td>
+            <td>{{order.stationId}}</td>
+            <td>{{order.location}}</td>
+            <td>{{order.fuelType}}</td>
+            <td>{{order.amount}}</td>
+            <td>{{order.status}}</td>
+            <td><button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong" (click) = "edit(order)">Edit Status</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<!-- //my order -->
+<!-- <div class="col-md registration">
+  <h2>My Orders </h2>
+  <br> -->
+    <!-- <div class="form-group mt-sm-2">
+      <label >Shed ID</label>
+      <input type="text" class="form-control" placeholder="Enter ID" [(ngModel)] = "id">
+    </div>
+    <button type="button" class="btn btn-primary mt-sm-2" (click)="getOrderById()">Submit</button>
+</div> -->
+<!-- 
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">RefID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Id</th>
+        <th scope="col">Location</th>
+        <th scope="col">Capacity</th>
+        <th scope="col">Fuel Type</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let order of orderDetails">
+        <td>{{order.orderId}}</td>
+        <td>{{order.stationName}}</td>
+        <td>{{order.stationId}}</td>
+        <td>{{order.location}}</td>
+        <td>{{order.fuelType}}</td>
+        <td>{{order.amount}}</td>
+        <td>{{order.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div> -->
+
+<!-- /// -->
+
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit) = "updateOrder()">
+            <div class="form-group">
+              <label >Order ID :</label>
+              <input type="text" disabled #orderId [(ngModel)]="orderUpdate.orderId" name="orderId" id="orderId" class="form-control" >
+            </div><br>
+            <div class="form-group">
+              <label >Station ID :</label>
+              <input type="text" disabled #stationId [(ngModel)]="orderUpdate.stationId" name="stationId" id="stationId" class="form-control" >
+            </div><br>
+            <div class="form-group">
+              <label >Station Name :</label>
+              <input type="text" disabled #stationName [(ngModel)]="orderUpdate.stationName" name="stationName" id="stationName" class="form-control" >
+            </div><br>
+            <div class="form-group">
+              <label >Station Location :</label>
+              <input type="text"disabled #location [(ngModel)]="orderUpdate.location" name="location" id="location" class="form-control">
+            </div><br>
+            <div class="form-group">
+              <label >Fuel Type :</label>
+              <input type="text" disabled #fuelType [(ngModel)]="orderUpdate.fuelType" name="fuelType" id="fuelType" class="form-control">
+            </div><br>
+            <div class="form-group">
+              <label >Amount of fuel :</label>
+              <input type="text" disabled #amount [(ngModel)]="orderUpdate.amount" name="amount" id="amount" class="form-control">
+            </div><br>
+           
+              <div class="form-group">
+                <label >Status :</label>
+                <input  type="text" #status [(ngModel)]="orderUpdate.status" name="status" id="status" value="Pending" class="form-control" >
+              </div><br>
+              <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary w-100">
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
