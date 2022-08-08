@@ -1,0 +1,17 @@
+server:
+  port: 9090
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false
+      host: localhost
+      port: 27017
+      database: fuelstation
+
+  kafka:
+    producer:
+      bootstrap-servers: "[::1]:9092"
+      key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+      value-serializer: "org.springframework.kafka.support.serializer.JsonSerializer"
+
+
