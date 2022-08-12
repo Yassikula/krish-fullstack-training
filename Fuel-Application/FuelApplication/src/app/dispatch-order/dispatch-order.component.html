@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md">
+ 
+  <br>
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">RefID</th>
+          <th scope="col">Schedule Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let dispatch of dispatches ">
+          <td>{{dispatch.orderId}}</td>
+          <td>{{dispatch.scheduleDate}}</td>
+          <td><button type="button" class="btn btn-danger mt-sm-1 mb-sm-1" (click)="dispatchOrder(dispatch.orderId)">Dispatch</button></td>
+        </tr>
+      </tbody>
+    </table>
+      </div>
+    </div>
+  </div>
+  
