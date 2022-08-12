@@ -51,20 +51,37 @@ public class OrderService {
     }
 
 
-    public ResponseEntity<Optional<Order>> getStationOrder(String stationId){
+    public ResponseEntity<List<Order>> getStationOrder(int stationId){
         return ResponseEntity.status(HttpStatus.OK).body(orderRepository.findByStationId(stationId));
     }
 
 
-    public ResponseEntity<Order> OrderReceived(String stationId){
+    public ResponseEntity<Order> OrderReceived(int id , String status){
 
-        Optional<Order> selectedOrder= orderRepository.findByStationId(stationId);
+        Optional<Order> selectedOrder= orderRepository.findById(id);
         if(selectedOrder.isPresent()){
             Order order=selectedOrder.get();
-            order.setStatus("Completed");
+            order.setStatus(status);
             orderRepository.save(order);
             return ResponseEntity.status(HttpStatus.OK).body(order);
         }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<Order> OrderReceived(int id, String status, String scheduleDate) {
+
+        Optional<Order> byId = orderRepository.findById(id);
+        if(byId.isPresent()) {
+            Order order = byId.get();
+            order.setStatus(status);
+            order.setScheduleDate(scheduleDate);
+
+            orderRepository.save(order);
+
+            return ResponseEntity.status(HttpStatus.OK).body(order);
+
+        }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
