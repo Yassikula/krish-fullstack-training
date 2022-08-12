@@ -13,15 +13,12 @@ export class AppComponent {
   title = 'FuelApplication';
 
   orderDetails = null as any;
+
+  Order = status;
+  id!:number;
   stationId!:number;
 
   orderUpdate ={
-    orderId: "",
-    stationId: "",
-    stationName: "",
-    location :"",
-    fuelType: "",
-    amount: "",
     status : ""
 
   };
@@ -65,12 +62,12 @@ export class AppComponent {
     this.orderUpdate = order;
   }
 
-  updateOrder(){
-    this.orderService.OrderReceived(this.orderUpdate).subscribe(
+  updateOrder(orderId : any){
+    this.orderService.OrderReceived(orderId, "Completed").subscribe(
 
       (resp) => {
         console.log(resp);
-      this.orderDetails= resp;
+      this.getOrderById();
       },
       (err) => {
         console.log(err);
@@ -79,11 +76,12 @@ export class AppComponent {
   }
 
   getOrderById(){
-    this.orderService.getOrderById(this.stationId).subscribe(data =>{
+    this.orderService.getOrderById(this.id).subscribe(data =>{
       this.orderDetails = data;
       console.log(data);
     },
     error => console.log(error));
   }
 
+ 
 }
