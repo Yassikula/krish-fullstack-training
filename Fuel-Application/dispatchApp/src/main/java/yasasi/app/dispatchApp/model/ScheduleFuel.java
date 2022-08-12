@@ -10,19 +10,14 @@ public class ScheduleFuel {
 
     @Id
     private int orderId;
-    private String fuelType;
-    private int qty;
-    private LocalDate scheduleDate = LocalDate.now().plusDays(4);
-    private String status;
+    private String scheduleDate ;
+
 
     public ScheduleFuel() {}
 
-    public ScheduleFuel(int orderId, String fuelType, int qty, LocalDate scheduleDate, String status) {
+    public ScheduleFuel(int orderId, String scheduleDate) {
         this.orderId = orderId;
-        this.fuelType = fuelType;
-        this.qty = qty;
         this.scheduleDate = scheduleDate;
-        this.status = status;
     }
 
     public int getOrderId() {
@@ -33,46 +28,20 @@ public class ScheduleFuel {
         this.orderId = orderId;
     }
 
-    public String getFuelType() {
-        return fuelType;
-    }
 
-    public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public LocalDate getScheduleDate() {
+    public String getScheduleDate() {
         return scheduleDate;
     }
 
-    public void setScheduleDate() {
+    public void setScheduleDate(String scheduleDate) {
         this.scheduleDate = scheduleDate;
-    }
-
-    public String getStatus(String scheduled) {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     @Override
     public String toString() {
         return "ScheduleFuel{" +
                 "orderId=" + orderId +
-                ", fuelType='" + fuelType + '\'' +
-                ", qty=" + qty +
-                ", scheduleDate=" + scheduleDate +
-                ", status='" + status + '\'' +
+                ", scheduleDate='" + scheduleDate + '\'' +
                 '}';
     }
 }
