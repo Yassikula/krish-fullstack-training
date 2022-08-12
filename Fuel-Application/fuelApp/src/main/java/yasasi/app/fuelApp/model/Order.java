@@ -12,17 +12,19 @@ public class Order {
 
     @Id
     private int orderId;
-    private String stationId;
+    private int stationId;
     private String stationName;
     private  String location;
     private String fuelType;
     private Integer amount;
-    private String status= "Pending";
+    private String status;
+    private String scheduleDate;
 
     public Order(){}
 
-    public Order(int orderId, String stationId, String stationName, String location, String fuelType, Integer amount, String status) {
-        super();
+
+    public Order(int orderId, int stationId, String stationName, String location, String fuelType, Integer amount, String status, String scheduleDate) {
+       super();
         this.orderId = orderId;
         this.stationId = stationId;
         this.stationName = stationName;
@@ -30,6 +32,7 @@ public class Order {
         this.fuelType = fuelType;
         this.amount = amount;
         this.status = status;
+        this.scheduleDate = scheduleDate;
     }
 
     public int getOrderId() {
@@ -40,11 +43,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getStationId() {
+    public int getStationId() {
         return stationId;
     }
 
-    public void setStationId(String stationId) {
+    public void setStationId(int stationId) {
         this.stationId = stationId;
     }
 
@@ -88,16 +91,25 @@ public class Order {
         this.status = status;
     }
 
+    public String getScheduleDate() {
+        return scheduleDate;
+    }
+
+    public void setScheduleDate(String scheduleDate) {
+        this.scheduleDate = scheduleDate;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
-                ", stationId='" + stationId + '\'' +
+                ", stationId=" + stationId +
                 ", stationName='" + stationName + '\'' +
                 ", location='" + location + '\'' +
                 ", fuelType='" + fuelType + '\'' +
                 ", amount=" + amount +
                 ", status='" + status + '\'' +
+                ", scheduleDate='" + scheduleDate + '\'' +
                 '}';
     }
 }
