@@ -23,24 +23,22 @@ public class ConsumeListner {
     public void consumeJson(@Payload List<ReserveFuel> data){
 
         String value = String.valueOf(data);
-        int OrderId = 0;
-        String fuelType = "";
-        int fuelqty = 0;
+        int orderId = 0;
+
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
         List<ReserveFuel> reservedOrder = objectMapper.readValue(value, new TypeReference<List<ReserveFuel>>(){});
             for(ReserveFuel rs : reservedOrder) {
-                OrderId = rs.getOrderId();
-                fuelType = rs.getFuelType();
-                fuelqty = rs.getQty();
+                orderId = rs.getOrderId();
+
             }
 
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
         }
 
-        System.out.println(scheduleService.scheduleDate(OrderId,fuelType,fuelqty));
+        System.out.println(scheduleService.scheduleDate(orderId));
 
     }
 
